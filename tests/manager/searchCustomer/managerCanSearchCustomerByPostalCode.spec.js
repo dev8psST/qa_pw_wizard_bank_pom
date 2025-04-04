@@ -45,5 +45,15 @@ Test:
 4. Assert no other rows is present in the table.
 */
 
+const addCustomer = new AddCustomerPage(page, firstName, lastName, postalCode);
+await addCustomer.openCustomersListTab();
+
+await addCustomer.fillField(addCustomer.fieldSearch, postalCode);
+
+await addCustomer.expectText(addCustomer.myLocator, `${firstName} ${lastName}`);
+
+await addCustomer.expectTextNotVisible(addCustomer.myLocator, "Hello There");
+await addCustomer.assertNoMoreFields(addCustomer.myLocatorHidden);
+
 
 });

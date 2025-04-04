@@ -1,6 +1,7 @@
 import { test } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { AddCustomerPage } from '../../../src/pages/manager/AddCustomerPage';
+
 let firstName;
 let lastName;
 let postalCode; 
