@@ -12,9 +12,11 @@ export class AddCustomerPage {
     this.postalCodeField = page.getByRole('textbox', { name: 'Post Code' });
 
     this.myLocator = page.getByRole('table').getByRole('rowgroup').nth(1).getByRole('row').last();
+    this.myLocatorHidden = page.getByRole('table').getByRole('rowgroup').nth(1).getByRole('row').nth(1);
 
     this.myLocatorCustomerForDel = page.getByRole('row', { name: `${firstName} ${lastName} ${postCode}` }).getByRole('button');
-
+    
+    this.fieldSearch = page.getByRole('textbox', { name: 'Search Customer' });
   }
 
   async open() {
@@ -42,5 +44,9 @@ export class AddCustomerPage {
   }
   async expectTextNotVisible(locator, text) {
     await expect(locator).not.toContainText(text);
+  }
+
+  async assertNoMoreFields(locator){
+    await expect(locator).toBeHidden();
   }
 }
