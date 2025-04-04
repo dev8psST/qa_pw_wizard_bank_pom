@@ -1,5 +1,12 @@
 import { test } from '@playwright/test';
 import { faker } from '@faker-js/faker';
+import { AddCustomerPage } from '../../../src/pages/manager/AddCustomerPage';
+import { AddCustomerPage as AddSome } from '../../../src/pages/manager/OpenAccountPage';
+
+
+const firstName = faker.person.firstName();
+const lastName = faker.person.lastName();
+const postCode = faker.location.zipCode();
 
 test.beforeEach( async ({ page }) => {
   /* 
@@ -11,6 +18,16 @@ test.beforeEach( async ({ page }) => {
   5. Click [Add Customer].
   6. Reload the page (This is a simplified step to close the popup).
   */
+
+   const addCustomer = new AddCustomerPage(page);  
+   
+   await addCustomer.open();
+   
+   await addCustomer.fillField(addCustomer.firstNameField, firstName);
+   await addCustomer.fillField(addCustomer.lastNameField, lastName);
+   await addCustomer.fillField(addCustomer.postalCodeField, postCode);
+   
+   await addCustomer.clickBtn(addCustomer.btnAddCustomer);
 
 });
 
@@ -28,4 +45,8 @@ Test:
 Tips:
  1. Do not rely on the customer row id for the step 13. Use the ".last()" locator to get the last row.
 */
+const addSome = new AddSome(page, firstName, lastName, postCode);
+
+await addSome.open();
+
 });
