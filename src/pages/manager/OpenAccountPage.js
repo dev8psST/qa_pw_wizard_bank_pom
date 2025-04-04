@@ -20,17 +20,27 @@ export class AddCustomerPage {
   async selectCurrency(currencyName) {
     await this.currencyDropDown.selectOption(currencyName);
   }
+  async reloadPage(){
+    await this.page.reload();
+  }
 
-  async selectCustomer() {
+  async selectMyCustomer() {
     await this.customerDropDown.selectOption(this.customerName);
   }
 
   async clickProcessBtn(){
     await this.btnProcess.click();
   }
+  async clickCustomersBtn(){
+    await this.btnCustomers.click();
+  }
 
   async assertSelectCurrencyDropdownContainsValue(value) {
     const currentOptionText = await this.currencyDropDown.inputValue();
     expect(currentOptionText).toBe(value);
+  }
+
+  async assertCustomerNumberNotEmpty(){
+    await expect(this.myLocator.getByRole('cell').nth(3)).not.toBeEmpty(); //.not.toBe('');
   }
 }

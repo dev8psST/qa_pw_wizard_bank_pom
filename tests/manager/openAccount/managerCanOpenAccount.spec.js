@@ -49,4 +49,15 @@ const addSome = new AddSome(page, firstName, lastName, postCode);
 
 await addSome.open();
 
+await addSome.selectMyCustomer();
+
+await addSome.selectCurrency('Dollar');
+await addSome.clickProcessBtn();
+
+await addSome.reloadPage();
+await addSome.clickCustomersBtn();
+
+await addSome.assertCustomerNumberNotEmpty();
+
+
 });
