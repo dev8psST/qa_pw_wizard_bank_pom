@@ -9,6 +9,7 @@ export class AddCustomerPage {
     this.btnProcess = page.getByRole('button', { name: 'Process' });
     this.btnCustomers = page.getByRole('button', { name: 'Customers' });
     this.myLocator = page.getByRole('table').getByRole('rowgroup').nth(1).getByRole('row').last();
+    //what is it
   }
 
   async open() {
